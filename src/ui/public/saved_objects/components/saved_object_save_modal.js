@@ -35,6 +35,7 @@ import {
   EuiForm,
   EuiFormRow,
   EuiSwitch,
+  EuiSelect
 } from '@elastic/eui';
 
 export class SavedObjectSaveModal extends React.Component {
@@ -43,6 +44,7 @@ export class SavedObjectSaveModal extends React.Component {
 
     this.state = {
       title: props.title,
+      sharing: props.sharing || 'private',
       copyOnSave: false,
       isTitleDuplicateConfirmed: false,
       hasTitleDuplicate: false,
@@ -77,6 +79,7 @@ export class SavedObjectSaveModal extends React.Component {
 
     await this.props.onSave({
       newTitle: this.state.title,
+      newSharing: this.state.sharing,
       newCopyOnSave: this.state.copyOnSave,
       isTitleDuplicateConfirmed: this.state.isTitleDuplicateConfirmed,
       onTitleDuplicate: this.onTitleDuplicate,
@@ -88,6 +91,12 @@ export class SavedObjectSaveModal extends React.Component {
       title: event.target.value,
       isTitleDuplicateConfirmed: false,
       hasTitleDuplicate: false,
+    });
+  };
+
+  onSharingChange = (event) => {
+    this.setState({
+      sharing: event.target.value
     });
   };
 
@@ -198,6 +207,31 @@ export class SavedObjectSaveModal extends React.Component {
                   isInvalid={this.state.hasTitleDuplicate || this.state.title.length === 0}
                 />
               </EuiFormRow>
+
+              <EuiFormRow
+                label="Sharing"
+              >
+                 <EuiSelect
+                  name="Sharing"
+                  value={this.state.sharing}
+                  onChange={this.onSharingChange}
+                  options={[
+                    {
+                      text: 'Private',
+                      value: 'private'
+                    },
+                    {
+                      text: 'With merchant',
+                      value: 'with_merchant'
+                    },
+                    {
+                      text: 'With all',
+                      value: 'with_all'
+                    }
+                  ]}
+                />
+              </EuiFormRow>
+
 
               {this.props.options}
 

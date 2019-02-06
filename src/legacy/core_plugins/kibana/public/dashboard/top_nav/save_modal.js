@@ -38,10 +38,10 @@ class DashboardSaveModalUi extends React.Component {
     };
   }
 
-  saveDashboard = ({ newTitle, newCopyOnSave, isTitleDuplicateConfirmed, onTitleDuplicate }) => {
+  saveDashboard = ({ newTitle, newSharing, newCopyOnSave, isTitleDuplicateConfirmed, onTitleDuplicate }) => {
     this.props.onSave({
       newTitle,
-      newDescription: this.state.description,
+      newDescription: newSharing,
       newCopyOnSave,
       newTimeRestore: this.state.timeRestore,
       isTitleDuplicateConfirmed,
@@ -64,19 +64,6 @@ class DashboardSaveModalUi extends React.Component {
   renderDashboardSaveOptions() {
     return (
       <Fragment>
-        <EuiFormRow
-          label={<FormattedMessage
-            id="kbn.dashboard.topNav.saveModal.descriptionFormRowLabel"
-            defaultMessage="Description"
-          />}
-        >
-          <EuiTextArea
-            data-test-subj="dashboardDescription"
-            value={this.state.description}
-            onChange={this.onDescriptionChange}
-            compressed
-          />
-        </EuiFormRow>
 
         <EuiFormRow
           label={<FormattedMessage
@@ -104,6 +91,7 @@ class DashboardSaveModalUi extends React.Component {
         onSave={this.saveDashboard}
         onClose={this.props.onClose}
         title={this.props.title}
+        sharing={this.props.description}
         showCopyOnSave={this.props.showCopyOnSave}
         objectType="dashboard"
         options={this.renderDashboardSaveOptions()}

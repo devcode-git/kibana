@@ -42,7 +42,7 @@ module.factory('SavedSheet', function (Private, config) {
       defaults: {
         title: 'New TimeLion Sheet',
         hits: 0,
-        description: '',
+        description: 'private',
         timelion_sheet: ['.es(*)'],
         timelion_interval: 'auto',
         timelion_chart_height: 275,

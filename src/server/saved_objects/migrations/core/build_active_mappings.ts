@@ -77,6 +77,15 @@ function defaultMapping(): IndexMapping {
         updated_at: {
           type: 'date',
         },
+        userId: {
+          type: 'keyword'
+        },
+        merchantId: {
+            type: 'keyword'
+        },
+        sharing: {
+            type: 'keyword'
+        }
       },
     },
   };

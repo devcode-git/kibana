@@ -109,6 +109,9 @@ export class SavedObjectsSerializer {
       ...(_source.migrationVersion && { migrationVersion: _source.migrationVersion }),
       ...(_source.updated_at && { updated_at: _source.updated_at }),
       ...(_version != null && { version: _version }),
+      ...(_source.sharing && { sharing: _source.sharing }),
+      ...(_source.merchantId && { merchantId: _source.merchantId }),
+      ...(_source.userId && { userId: _source.userId }),
     };
   }
 
@@ -118,13 +121,17 @@ export class SavedObjectsSerializer {
    * @param {SavedObjectDoc} savedObj - The saved object to be converted to raw ES format.
    */
   public savedObjectToRaw(savedObj: SavedObjectDoc): RawDoc {
-    const { id, type, namespace, attributes, migrationVersion, updated_at, version } = savedObj;
+    const { id, type, namespace, attributes, migrationVersion, updated_at, version, sharing, merchantId, userId } = savedObj;
+    const newSharing = attributes.hasOwnProperty('description') ? Object(attributes)['description'] : sharing;
     const source = {
       [type]: attributes,
       type,
       ...(namespace && !this.schema.isNamespaceAgnostic(type) && { namespace }),
       ...(migrationVersion && { migrationVersion }),
       ...(updated_at && { updated_at }),
+      sharing: newSharing,
+      ...(merchantId && { merchantId }),
+      ...(userId && { userId }),
     };
 
     return {

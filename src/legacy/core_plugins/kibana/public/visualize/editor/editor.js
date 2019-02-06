@@ -156,9 +156,11 @@ function VisEditor(
       }
     },
     run: async () => {
-      const onSave = ({ newTitle, newCopyOnSave, isTitleDuplicateConfirmed, onTitleDuplicate }) => {
+      const onSave = ({ newTitle, newSharing, newCopyOnSave, isTitleDuplicateConfirmed, onTitleDuplicate }) => {
         const currentTitle = savedVis.title;
+        const currentDescription = savedVis.description;
         savedVis.title = newTitle;
+        savedVis.description = newSharing;
         savedVis.copyOnSave = newCopyOnSave;
         const saveOptions = {
           confirmOverwrite: false,
@@ -169,6 +171,7 @@ function VisEditor(
           // If the save wasn't successful, put the original values back.
           if (!id || error) {
             savedVis.title = currentTitle;
+            savedVis.description = currentDescription;
           }
           return { id, error };
         });
@@ -179,6 +182,7 @@ function VisEditor(
           onSave={onSave}
           onClose={() => {}}
           title={savedVis.title}
+          sharing={savedVis.description}
           showCopyOnSave={savedVis.id ? true : false}
           objectType="visualization"
         />);

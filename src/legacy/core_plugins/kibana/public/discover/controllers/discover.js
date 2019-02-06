@@ -212,9 +212,11 @@ function discoverController(
     }),
     testId: 'discoverSaveButton',
     run: async () => {
-      const onSave = ({ newTitle, newCopyOnSave, isTitleDuplicateConfirmed, onTitleDuplicate }) => {
+      const onSave = ({ newTitle, newSharing, newCopyOnSave, isTitleDuplicateConfirmed, onTitleDuplicate }) => {
         const currentTitle = savedSearch.title;
+        const currentDescription = savedSearch.description;
         savedSearch.title = newTitle;
+        savedSearch.description = newSharing;
         savedSearch.copyOnSave = newCopyOnSave;
         const saveOptions = {
           confirmOverwrite: false,
@@ -225,6 +227,7 @@ function discoverController(
           // If the save wasn't successful, put the original values back.
           if (!id || error) {
             savedSearch.title = currentTitle;
+            savedSearch.description = currentDescription;
           }
           return { id, error };
         });
@@ -235,6 +238,7 @@ function discoverController(
           onSave={onSave}
           onClose={() => {}}
           title={savedSearch.title}
+          sharing={savedSearch.description}
           showCopyOnSave={savedSearch.id ? true : false}
           objectType="search"
         />);

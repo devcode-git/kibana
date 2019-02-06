@@ -356,13 +356,14 @@ app.controller('timelion', function (
     });
   }
 
-  function saveExpression(title) {
+  function saveExpression(title, description) {
     savedVisualizations.get({ type: 'timelion' }).then(function (savedExpression) {
       savedExpression.visState.params = {
         expression: $scope.state.sheet[$scope.state.selected],
         interval: $scope.state.interval
       };
       savedExpression.title = title;
+      savedExpression.description = description;
       savedExpression.visState.title = title;
       savedExpression.save().then(function (id) {
         if (id) {
