@@ -211,7 +211,7 @@ export class SavedObjectSaveModal extends React.Component {
               <EuiFormRow
                 label="Sharing"
               >
-                 <EuiSelect
+                <EuiSelect
                   name="Sharing"
                   value={this.state.sharing}
                   onChange={this.onSharingChange}

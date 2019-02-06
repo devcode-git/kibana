@@ -78,14 +78,14 @@ function defaultMapping(): IndexMapping {
           type: 'date',
         },
         userId: {
-          type: 'keyword'
+          type: 'keyword',
         },
         merchantId: {
-            type: 'keyword'
+          type: 'keyword',
         },
         sharing: {
-            type: 'keyword'
-        }
+          type: 'keyword',
+        },
       },
     },
   };

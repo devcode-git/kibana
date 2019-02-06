@@ -24,7 +24,6 @@ import { injectI18n, FormattedMessage } from '@kbn/i18n/react';
 import { SavedObjectSaveModal } from 'ui/saved_objects/components/saved_object_save_modal';
 import {
   EuiFormRow,
-  EuiTextArea,
   EuiSwitch,
 } from '@elastic/eui';
 

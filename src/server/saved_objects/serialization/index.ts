@@ -121,8 +121,20 @@ export class SavedObjectsSerializer {
    * @param {SavedObjectDoc} savedObj - The saved object to be converted to raw ES format.
    */
   public savedObjectToRaw(savedObj: SavedObjectDoc): RawDoc {
-    const { id, type, namespace, attributes, migrationVersion, updated_at, version, sharing, merchantId, userId } = savedObj;
-    const newSharing = attributes.hasOwnProperty('description') ? Object(attributes)['description'] : sharing;
+    const {
+      id,
+      type,
+      namespace,
+      attributes,
+      migrationVersion,
+      updated_at,
+      version,
+      sharing,
+      merchantId,
+      userId,
+    } = savedObj;
+    const key = 'description';
+    const newSharing = attributes.hasOwnProperty(key) ? Object(attributes)[key] : sharing;
     const source = {
       [type]: attributes,
       type,
