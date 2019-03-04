@@ -481,7 +481,7 @@ export class QueryBarUI extends Component<Props, State> {
                       className="kuiLocalSearchAssistedInput__input"
                       placeholder={this.props.intl.formatMessage({
                         id: 'common.ui.queryBar.searchInputPlaceholder',
-                        defaultMessage: 'Search… (e.g. status:200 AND extension:PHP)',
+                        defaultMessage: 'Search',
                       })}
                       value={this.state.query.query}
                       onKeyDown={this.onKeyDown}
