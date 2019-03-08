@@ -21,6 +21,7 @@ import {
   EuiAccordion,
   EuiText,
   EuiButton,
+  EuiSelect,
 } from '@elastic/eui';
 import { DEFAULT_WORKPAD_CSS } from '../../../common/lib/constants';
 
@@ -28,10 +29,12 @@ export class WorkpadConfig extends PureComponent {
   static propTypes = {
     size: PropTypes.object.isRequired,
     name: PropTypes.string.isRequired,
+    description: PropTypes.string,
     css: PropTypes.string,
     setSize: PropTypes.func.isRequired,
     setName: PropTypes.func.isRequired,
     setWorkpadCSS: PropTypes.func.isRequired,
+    setDescription: PropTypes.func.isRequired,
   };
 
   state = {
@@ -39,7 +42,7 @@ export class WorkpadConfig extends PureComponent {
   };
 
   render() {
-    const { size, name, setSize, setName, setWorkpadCSS } = this.props;
+    const { size, name, description, setSize, setName, setWorkpadCSS, setDescription } = this.props;
     const { css } = this.state;
     const rotate = () => setSize({ width: size.height, height: size.width });
 
@@ -72,6 +75,28 @@ export class WorkpadConfig extends PureComponent {
 
         <EuiFormRow label="Name" compressed>
           <EuiFieldText value={name} onChange={e => setName(e.target.value)} />
+        </EuiFormRow>
+
+        <EuiFormRow label="Sharing" compressed>
+          <EuiSelect
+            name="Sharing"
+            value={description}
+            onChange={e => setDescription(e.target.value)}
+            options={[
+              {
+                text: 'Private',
+                value: 'private'
+              },
+              {
+                text: 'With merchant',
+                value: 'with_merchant'
+              },
+              {
+                text: 'With all',
+                value: 'with_all'
+              }
+            ]}
+          />
         </EuiFormRow>
 
         <EuiFlexGroup gutterSize="s" alignItems="center">

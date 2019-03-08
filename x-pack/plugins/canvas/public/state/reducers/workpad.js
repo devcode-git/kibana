@@ -13,6 +13,7 @@ import {
   setName,
   setWriteable,
   setWorkpadCSS,
+  setDescription,
 } from '../actions/workpad';
 
 import { APP_ROUTE_WORKPAD } from '../../../common/lib/constants';
@@ -43,6 +44,10 @@ export const workpadReducer = handleActions(
 
     [setWorkpadCSS]: (workpadState, { payload }) => {
       return { ...workpadState, css: payload };
+    },
+
+    [setDescription]: (workpadState, { payload }) => {
+      return { ...workpadState, description: payload };
     },
   },
   {}

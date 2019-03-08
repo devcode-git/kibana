@@ -7,7 +7,7 @@
 import { connect } from 'react-redux';
 
 import { get } from 'lodash';
-import { sizeWorkpad, setName, setWorkpadCSS } from '../../state/actions/workpad';
+import { sizeWorkpad, setName, setWorkpadCSS, setDescription } from '../../state/actions/workpad';
 import { getWorkpad } from '../../state/selectors/workpad';
 import { DEFAULT_WORKPAD_CSS } from '../../../common/lib/constants';
 import { WorkpadConfig as Component } from './workpad_config';
@@ -29,6 +29,7 @@ const mapDispatchToProps = {
   setSize: size => sizeWorkpad(size),
   setName: name => setName(name),
   setWorkpadCSS: css => setWorkpadCSS(css),
+  setDescription: description => setDescription(description),
 };
 
 export const WorkpadConfig = connect(

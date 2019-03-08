@@ -16,6 +16,7 @@ export const setWriteable = createAction('setWriteable');
 export const setColors = createAction('setColors');
 export const setRefreshInterval = createAction('setRefreshInterval');
 export const setWorkpadCSS = createAction('setWorkpadCSS');
+export const setDescription = createAction('setDescription');
 
 export const initializeWorkpad = createThunk('initializeWorkpad', ({ dispatch }) => {
   dispatch(fetchAllRenderables());
