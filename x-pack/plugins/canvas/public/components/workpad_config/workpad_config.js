@@ -85,16 +85,16 @@ export class WorkpadConfig extends PureComponent {
             options={[
               {
                 text: 'Private',
-                value: 'private'
+                value: 'private',
               },
               {
                 text: 'With merchant',
-                value: 'with_merchant'
+                value: 'with_merchant',
               },
               {
                 text: 'With all',
-                value: 'with_all'
-              }
+                value: 'with_all',
+              },
             ]}
           />
         </EuiFormRow>
